@@ -11,9 +11,9 @@ const RepoCard = ({ repository }) => {
                 <h4>{repository.name}</h4>
             </div>
             <div className="container">
-                <p>{repository.language ? repository.language : '-'}</p>
-                <p>{repository.description ? repository.description : '-'}</p>
-                <p>{repository.updated_at.substr(0, 10).split('-').reverse().join('/')}</p>
+                <p>Linguagem: {repository.language}</p>
+                <p>Descrição: {repository.description}</p>
+                <p>Ultima atualização: {repository.updated_at.substr(0, 10).split('-').reverse().join('/')}</p>
             </div>
             <div className="footer">
                 <a href={repository.html_url} target="_blank">

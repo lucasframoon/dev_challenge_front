@@ -10,17 +10,15 @@ import Commit from "./pages/Commit"
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route element={<App />}>
+  <BrowserRouter>
+    <Routes>
+      <Route element={<App />}>
 
-          <Route path="/" element={<Repo />} />
-          <Route path="/branch" element={<Branch />} />
-          <Route path="/commit" element={<Commit />} />
+        <Route path="/" element={<Repo />} />
+        <Route path="/branch" element={<Branch />} />
+        <Route path="/commit" element={<Commit />} />
 
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+      </Route>
+    </Routes>
+  </BrowserRouter>
 )

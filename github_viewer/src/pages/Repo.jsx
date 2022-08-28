@@ -21,29 +21,28 @@ const Repo = () => {
     useEffect(() => {
         const user = searchParams.get('user') ? searchParams.get('user') : 'lucasframoon';
 
-        if(user) {
-            const userRepositorys = `${githubApiUrl}users/${user}/repos`;       
+        if (user) {
+            const userRepositorys = `${githubApiUrl}users/${user}/repos`;
             getUserRepositorys(userRepositorys);
         }
-            
     }, [])
-    
-    return (<div className="container">
-                <h1>Repositórios</h1>
-                <hr />
-                <h2 className="title">
-                    <div className="repository-container">
-                        {userRepositorys.length === 0 && <p>Nenhum resultado</p>}
-                        {userRepositorys.length > 0 && 
-                            userRepositorys.map((repository) => 
-                                <RepoCard key={repository.id} repository={repository}/>
+
+    return (
+        <div className="container">
+            <h1>Repositórios</h1>
+            <hr />
+            <h2 className="title">
+                <div className="repository-container">
+                    {userRepositorys.length === 0 && <p>Nenhum resultado</p>}
+                    {userRepositorys.length > 0 &&
+                        userRepositorys.map((repository) =>
+                            <RepoCard key={repository.id} repository={repository} />
                         )}
 
-                    </div>
-                </h2>
-            </div>)
-
-
-}
+                </div>
+            </h2>
+        </div>
+    );
+};
 
 export default Repo;

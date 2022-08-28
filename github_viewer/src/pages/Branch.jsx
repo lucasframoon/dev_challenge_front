@@ -22,7 +22,7 @@ const Branch = () => {
         const user = searchParams.get('user');
         const repo = searchParams.get('repo');
 
-        if (user) {
+        if (user && repo) {
             const branchs = `${githubApiUrl}repos/${user}/${repo}/branches`;
             getBranchs(branchs);
         }

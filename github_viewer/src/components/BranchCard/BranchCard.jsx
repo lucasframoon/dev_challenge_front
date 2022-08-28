@@ -9,11 +9,11 @@ const BranchCard = ({ branch }) => {
                 <h4>{branch[0].name}</h4>
             </div>
             <div className="container">
-                <p>{branch[0].commit.sha}</p>
+                <p>SHA: {branch[0].commit.sha}</p>
             </div>
             <div className="footer">
 
-                <Link to={`/commit?user=${branch[1]}&repo=${branch[2]}&sha=${branch[0].commit.sha}`}>
+                <Link to={`/commit?user=${branch[1]}&repo=${branch[2]}`}>
                     Commits
                     <GoGitCommit />
                 </Link>

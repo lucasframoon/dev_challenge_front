@@ -22,29 +22,29 @@ const Commit = () => {
 
         const user = searchParams.get('user');
         const repo = searchParams.get('repo');
-        const sha = searchParams.get('sha');
 
-        if (user) {
-            const commits = `${githubApiUrl}repos/${user}/${repo}/commits/${sha}`;
+        if (user && repo) {
+            const commits = `${githubApiUrl}repos/${user}/${repo}/commits`;
             getCommits(commits);
         }
     }, [])
 
-    return (<div className="container">
-        <h1>Commits</h1>
-        <hr />
-        <h2 className="title">
-            <div className="commit-list">
-                {commits.length === 0 && <li>Nenhum resultado</li>}
-                {commits.length > 0 &&
-                    commits.map((commit) =>
-                        <CommitList key={commit.sha} commit={commit} />
-                    )}
-            </div>
-        </h2>
-    </div>)
+    return (
+        <div className="container">
+            <h1>Commits</h1>
+            <hr />
+            <h2 className="title">
+                <div className="commit-list">
+                    {commits.length === 0 && <li>Nenhum resultado</li>}
+                    {commits.length > 0 &&
+                        commits.map((commit) =>
+                            <CommitList key={commit.sha} commit={commit} />
+                        )}
+                </div>
+            </h2>
+        </div>
+    );
 
-
-}
+};
 
 export default Commit;
