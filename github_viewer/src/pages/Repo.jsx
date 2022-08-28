@@ -8,6 +8,7 @@ const githubApiUrl = import.meta.env.VITE_GITHUB_API_URL
 const Repo = () => {
 
     const [userRepositorys, setUserRepositorys] = useState([])
+    const [searchParams] = useSearchParams()
 
     const getUserRepositorys = async (url) => {
         const res = await fetch(url)
@@ -18,17 +19,21 @@ const Repo = () => {
     }
 
     useEffect(() => {
-        const [searchParams] = useSearchParams()
-        const user = searchParams.get('user')
-        const userRepositorys = `${githubApiUrl}users/${user}/repos`
-               
-        getUserRepositorys(userRepositorys)
+        const user = searchParams.get('user') ? searchParams.get('user') : 'lucasframoon';
+
+        if(user) {
+            const userRepositorys = `${githubApiUrl}users/${user}/repos`;       
+            getUserRepositorys(userRepositorys);
+        }
+            
     }, [])
     
     return (<div className="container">
+                <h1>Repositórios</h1>
+                <hr />
                 <h2 className="title">
                     <div className="repository-container">
-                        {userRepositorys.length === 0 && <p>Carregando...</p>}
+                        {userRepositorys.length === 0 && <p>Nenhum resultado</p>}
                         {userRepositorys.length > 0 && 
                             userRepositorys.map((repository) => 
                                 <RepoCard key={repository.id} repository={repository}/>

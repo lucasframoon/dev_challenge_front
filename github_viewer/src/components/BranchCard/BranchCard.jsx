@@ -1,33 +1,24 @@
 import { Link } from 'react-router-dom';
-import { BiSearchAlt2 } from "react-icons/bi";
-import { GoGitBranch, GoMarkGithub } from "react-icons/go";
-import "./RepoCard.css";
+import { GoGitCommit } from "react-icons/go";
+import "./BranchCard.css";
 
-const RepoCard = ({ repository }) => {
-
+const BranchCard = ({ branch }) => {
     return (
         <div className="card">
             <div className="header">
-                <h4>{repository.name}</h4>
+                <h4>{branch[0].name}</h4>
             </div>
             <div className="container">
-                <p>{repository.language ? repository.language : '-'}</p>
-                <p>{repository.description ? repository.description : '-'}</p>
-                <p>{repository.updated_at.substr(0, 10).split('-').reverse().join('/')}</p>
+                <p>{branch[0].commit.sha}</p>
             </div>
             <div className="footer">
-                <a href={repository.html_url} target="_blank">
-                    <GoMarkGithub />
-                </a>
-                <a href={repository.branches_url}>
-                    {/* LCSTODO fazer funcao: esse git branch é o link para a api buscar a branchs, tem q disparar funcao */}
-                    <GoGitBranch />
-                </a>
-                {/* LCSTODO vai ser util commits_url / git_commits_url */}
+                <Link to={`/commit?user=${branch[1]}&repo=${branch[2]}&sha=${branch[0].commit.sha}`}>
+                    <GoGitCommit />
+                </Link>
             </div>
         </div>
     );
 };
 
-export default RepoCard;
+export default BranchCard;
 

@@ -16,8 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route element={<App />}>
 
           <Route path="/" element={<Repo />} />
-          <Route path="/Branch" element={<Branch />} />
-          <Route path="/Commit" element={<Commit />} />
+          <Route path="/branch" element={<Branch />} />
+          <Route path="/commit" element={<Commit />} />
 
         </Route>
       </Routes>

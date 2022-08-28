@@ -1,49 +1,50 @@
 import { useState, useEffect } from 'react'
-import RepoCard from "../components/RepoCard/RepoCard";
+import { useSearchParams } from 'react-router-dom';
+import BranchCard from "../components/BranchCard/BranchCard";
 import './Grid.css';
 
 const githubApiUrl = import.meta.env.VITE_GITHUB_API_URL
 
-const Repo = () => {
+const Branch = () => {
 
-    const [userBranchs, setUserBranchs] = useState([])
+    const [branchs, setBranchs] = useState([])
+    const [searchParams] = useSearchParams()
 
-    const getUserBranchs = async (url) => {
+    const getBranchs = async (url) => {
         const res = await fetch(url)
         const data = await res.json()
 
-        setUserBranchs(data)
+        setBranchs(data)
 
     }
 
     useEffect(() => {
-        const owner = 'lucasframoon';//owner.login
-        const repo = 'app_super_gestao';//repo.name
-        // const userBranchs = `${githubApiUrl}users/${user}/repos`
-        const userBranchs = `${githubApiUrl}/repos/${owner}/${repo}/branches`
-        
-        
-        setUserBranchs(userBranchs)//teste
+        const user = searchParams.get('user');
+        const repo = searchParams.get('repo');
 
-        getUserBranchs(userBranchs)
+        if (user) {
+            const branchs = `${githubApiUrl}repos/${user}/${repo}/branches`;
+            getBranchs(branchs);
+        }
+
     }, [])
-    
-
 
     return (<div className="container">
-                <h2 className="title">
-                    <div className="branch-container">
-                        {userBranchs.length === 0 && <p>Carregando...</p>}
-                        {userBranchs.length > 0 && 
-                            userBranchs.map((branch) => 
-                                <RepoCard key={branch.id} branch={branch}/>
-                        )}
+        <h1>Branchs</h1>
+        <hr />
+        <h2 className="title">
+            <div className="branch-container">
+                {branchs.length === 0 && <p>Nenhum resultado</p>}
+                {branchs.length > 0 &&
+                    branchs.map((branch) =>
+                        <BranchCard key={branch.name} branch={[branch, searchParams.get('user'), searchParams.get('repo')]} />
+                    )}
 
-                    </div>
-                </h2>
-            </div>)
+            </div>
+        </h2>
+    </div>)
 
 
 }
 
-export default Repo;
+export default Branch;

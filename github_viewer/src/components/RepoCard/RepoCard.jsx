@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
 import { BiSearchAlt2 } from "react-icons/bi";
 import { GoGitBranch, GoMarkGithub } from "react-icons/go";
+import { Link, useNavigate } from 'react-router-dom';
+
 import "./RepoCard.css";
 
 const RepoCard = ({ repository }) => {
@@ -19,10 +20,9 @@ const RepoCard = ({ repository }) => {
                 <a href={repository.html_url} target="_blank">
                     <GoMarkGithub />
                 </a>
-                <a href={repository.branches_url}>
-                    {/* LCSTODO fazer funcao: esse git branch é o link para a api buscar a branchs, tem q disparar funcao */}
+                <Link to={`/branch?user=${repository.owner.login}&repo=${repository.name}`}>
                     <GoGitBranch />
-                </a>
+                </Link>
                 {/* LCSTODO vai ser util commits_url / git_commits_url */}
             </div>
         </div>
