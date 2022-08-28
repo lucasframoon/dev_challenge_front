@@ -1,6 +1,5 @@
-import { BiSearchAlt2 } from "react-icons/bi";
 import { GoGitBranch, GoMarkGithub } from "react-icons/go";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import "./RepoCard.css";
 
@@ -18,12 +17,13 @@ const RepoCard = ({ repository }) => {
             </div>
             <div className="footer">
                 <a href={repository.html_url} target="_blank">
+                    Github
                     <GoMarkGithub />
                 </a>
                 <Link to={`/branch?user=${repository.owner.login}&repo=${repository.name}`}>
+                    Branchs
                     <GoGitBranch />
                 </Link>
-                {/* LCSTODO vai ser util commits_url / git_commits_url */}
             </div>
         </div>
     );
