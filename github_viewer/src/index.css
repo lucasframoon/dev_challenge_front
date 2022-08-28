@@ -1,0 +1,24 @@
+* {
+  font-family: "Montserrat";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #010409;
+}
+
+a {
+  text-decoration: none;
+  color: azure;
+  transition: .5s;
+}
+
+a:hover {
+  color: #71b7ff;
+}
+
+button:hover {
+  color: azure;
+}
