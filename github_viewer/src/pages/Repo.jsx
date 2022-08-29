@@ -14,13 +14,19 @@ const Repo = () => {
         const res = await fetch(url)
         const data = await res.json()
 
-        setUserRepositorys(data)
+        console.log('asdas');
+
+        if (data.message == "Not Found") {
+            setUserRepositorys([])
+        }else{
+            setUserRepositorys(data)
+        }
 
     }
 
     useEffect(() => {
         const user = searchParams.get('user') ? searchParams.get('user') : 'lucasframoon';
-
+        console.log(user);
         if (user) {
             const userRepositorys = `${githubApiUrl}users/${user}/repos`;
             getUserRepositorys(userRepositorys);

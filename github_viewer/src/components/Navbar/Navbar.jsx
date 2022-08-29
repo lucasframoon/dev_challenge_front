@@ -10,9 +10,11 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
+        console.log(search);
         e.preventDefault();
-
+        
         if (!search) return;
+        console.log(search);
 
         navigate(`/?user=${search}`);
     }
