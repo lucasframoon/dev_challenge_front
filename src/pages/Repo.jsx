@@ -16,7 +16,7 @@ const Repo = () => {
 
         if (data.message == "Not Found") {
             setUserRepositorys([])
-        }else{
+        } else {
             setUserRepositorys(data)
         }
 
@@ -28,7 +28,7 @@ const Repo = () => {
             const userRepositorys = `${githubApiUrl}users/${user}/repos`;
             getUserRepositorys(userRepositorys);
         }
-    }, [])
+    }, [searchParams])
 
     return (
         <div className="container">
