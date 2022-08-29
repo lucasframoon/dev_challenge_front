@@ -12,9 +12,8 @@ const Navbar = () => {
     const handleSubmit = (e) => {
         if (!search) return;
         navigate(`/?user=${search}`);
-        e.preventDefault();
         
-
+        e.preventDefault();
     }
 
     return (
@@ -25,7 +24,6 @@ const Navbar = () => {
                 </Link>
             </h2>
             <form onSubmit={handleSubmit}>
-            <form >
                 <input
                     type="text"
                     placeholder="Buscar usuário"
