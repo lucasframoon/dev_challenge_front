@@ -1,8 +1,6 @@
 import "./CommitList.css";
 
 const CommitList = ({ commit }) => {
-console.log(commit)
-console.log(commit.name)
     return (
         <div className="card">
             <div className="header">
